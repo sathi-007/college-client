@@ -1,0 +1,492 @@
+[
+{
+  "college_univ_code": "8P",
+  "college_counselling_code": "ACEM",
+  "college_name": "Aditya College of Engineering",
+  "college_website_url": "http:\/\/www.acem.ac.in",
+  "college_district": "Chittoor",
+  "college_state":"Andhra Pradesh",
+  "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "AK",
+  "college_counselling_code": "AITT",
+  "college_name": "Annamacharya Institute of Technology and Sciences",
+  "college_website_url": "http:\/\/www.aits-tpt.edu.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "KD",
+  "college_counselling_code": "ASCP",
+  "college_name": "Arpitha Srinivas College of Pharmacy",
+  "college_website_url": "http:\/\/www.arpithasrinivas.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "P1",
+  "college_counselling_code": "CHDL",
+  "college_name": "Chadalawada Ramanamma Engineering College",
+  "college_website_url": "http:\/\/www.crectirupati.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "2Q",
+  "college_counselling_code": "CVSE",
+  "college_name": "Chadalawada Venkata Subbaiah College of Engineering",
+  "college_website_url": "www.cvcetirupati.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "9M",
+  "college_counselling_code": "GVIC",
+  "college_name": "Golden Valley Integrated Campus",
+  "college_website_url": "http:\/\/www.gvic.ac.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "3D",
+  "college_counselling_code": "JBWC",
+  "college_name": "J.B.Women s Engineering College",
+  "college_website_url": "http:\/\/www.jbcollegestpt.org.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "3F",
+  "college_counselling_code": "KKCT",
+  "college_name": "KKC Institute of Technology and Engineering",
+  "college_website_url": "http:\/\/www.kkctech.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "3G",
+  "college_counselling_code": "KMMT",
+  "college_name": "KMM Institute of Technology and Science",
+  "college_website_url": "www.kmmits.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "AF",
+  "college_counselling_code": "KTPT",
+  "college_name": "Krishna Teja Pharmacy College",
+  "college_website_url": "www.krishnatejapharmacycollege.ac.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "F4",
+  "college_counselling_code": "KUPM",
+  "college_name": "Kuppam Engineering College",
+  "college_website_url": "http:\/\/www.kec.ac.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "8X",
+  "college_counselling_code": "MJRT",
+  "college_name": "M.J.R. College of Engineering and Technology",
+  "college_website_url": "http:\/\/www.mjrcet.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": 69,
+  "college_counselling_code": "MITS",
+  "college_name": "Madanapalle Institute of Technology and Science",
+  "college_website_url": "https:\/\/www.mits.ac.in\/",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "HW",
+  "college_counselling_code": "MCPM",
+  "college_name": "Mahathi College of Pharmacy",
+  "college_website_url": "http:\/\/www.mahathicollegeofpharmacy.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "KC",
+  "college_counselling_code": "MJRIBM",
+  "college_name": "MJR Institute of Business Management",
+  "college_website_url": "www.mjribm.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "HR",
+  "college_counselling_code": "MTIE",
+  "college_name": "Mother Theresa Institute of Engineering and Technology",
+  "college_website_url": "http:\/\/www.mtitech.edu.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "3P",
+  "college_counselling_code": "PDIT",
+  "college_name": "Priyadarshini Institute of Technology",
+  "college_website_url": "www.pdittpt.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "HT",
+  "college_counselling_code": "SSEC",
+  "college_name": "Sai Sakthi Engineering College",
+  "college_website_url": "http:\/\/www.saisakthi.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "CP",
+  "college_counselling_code": "SESP",
+  "college_name": "Seshachala College of Pharmacy",
+  "college_website_url": "http:\/\/www.scpptr.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "JM",
+  "college_counselling_code": "SESE",
+  "college_name": "Seshachala Institute of Engineering and Technology",
+  "college_website_url": "http:\/\/www.seshachala.edu.in\/",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "3U",
+  "college_counselling_code": "SEST",
+  "college_name": "Seshachala Institute of Technology",
+  "college_website_url": "http:\/\/www.seshachala.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "JA",
+  "college_counselling_code": "SVSC",
+  "college_name": "Seshachala Venkata Subbaiah PG College",
+  "college_website_url": "http:\/\/www.svspgcollege.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "CQ",
+  "college_counselling_code": "SHCP",
+  "college_name": "Seven Hills College of Pharmacy",
+  "college_website_url": "http:\/\/www.shcptirupati.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "4A",
+  "college_counselling_code": "SHRE",
+  "college_name": "Shree Institute of Technical Education",
+  "college_website_url": "http:\/\/www.site.edu.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "JE",
+  "college_counselling_code": "SRES",
+  "college_name": "Shree Rama Educational Society Group of Institutions",
+  "college_website_url": "http:\/\/www.sreerama.ac.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "9L",
+  "college_counselling_code": "SEAT",
+  "college_name": "Siddartha Educational Academy Group of Institutions Integrated Campus",
+  "college_website_url": "www.siddarthaedu.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "4E",
+  "college_counselling_code": "SIST",
+  "college_name": "Siddartha Institute of Science and Technology",
+  "college_website_url": "http:\/\/www.sistk.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "F6",
+  "college_counselling_code": "SDTN",
+  "college_name": "Siddharth Institute of Engineering and Technology",
+  "college_website_url": "www.sietk.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "W5",
+  "college_counselling_code": "SVTM",
+  "college_name": "Sir Vishveshwaraiah Institute of Science and Technology",
+  "college_website_url": "http:\/\/www.svtm.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "4C",
+  "college_counselling_code": "SRET",
+  "college_name": "Sree Rama Engineering College",
+  "college_website_url": "http:\/\/www.sreerama.ac.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "P9",
+  "college_counselling_code": "VNCP",
+  "college_name": "Sree Vidyanikethan College of Pharmacy",
+  "college_website_url": "http:\/\/www.vidyanikethan.edu",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": 12,
+  "college_counselling_code": "SVNE",
+  "college_name": "Sree Vidyanikethan Engineering College. Autonomous",
+  "college_website_url": "http:\/\/www.vidyanikethan.edu",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": 75,
+  "college_counselling_code": "SSCC",
+  "college_name": "Sreenivasa Institute of Technology and Management Studies AUTONOMOUS",
+  "college_website_url": "http:\/\/www.sitams.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": 38,
+  "college_counselling_code": "SKHE",
+  "college_name": "Sri Kalahastheeswara Institute of Technology",
+  "college_website_url": "http:\/\/www.skit.edu.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "Q0",
+  "college_counselling_code": "SKCP",
+  "college_name": "Sri Krishna Chaithanya College of Pharmacy",
+  "college_website_url": "http:\/\/www.skcpmpl.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "Q1",
+  "college_counselling_code": "LNCP",
+  "college_name": "Sri Lakshmi Narasimha College of Pharmacy",
+  "college_website_url": "www.slncpharmacy.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": 42,
+  "college_counselling_code": "SPSP",
+  "college_name": "Sri Padmavathi School of Pharmacy",
+  "college_website_url": "www.spsp.ac.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "G0",
+  "college_counselling_code": "SVPP",
+  "college_name": "Sri Venkatesa Perumal College of Engineering and Technology",
+  "college_website_url": "http:\/\/www.svpcet.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "JG",
+  "college_counselling_code": "NA",
+  "college_name": "Sri Venkateswara College of Computer Sciences",
+  "college_website_url": "http:\/\/www.svccsmca.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "BF",
+  "college_counselling_code": "SVCE",
+  "college_name": "Sri Venkateswara College of Engineering",
+  "college_website_url": "http:\/\/www.svcolleges.edu.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": 78,
+  "college_counselling_code": "SVCT",
+  "college_name": "Sri Venkateswara College of Engineering and Technology Autonomous",
+  "college_website_url": "http:\/\/www.svcetedu.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "GT",
+  "college_counselling_code": "SVCP",
+  "college_name": "Sri Venkateswara College of Pharmacy",
+  "college_website_url": "http:\/\/www.svcop.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "9E",
+  "college_counselling_code": "SVEW",
+  "college_name": "Sri Venkateswara Engineering College for Women",
+  "college_website_url": "http:\/\/www.svew.edu.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "4J",
+  "college_counselling_code": "SWTS",
+  "college_name": "Swetha Institute of Technology and Science",
+  "college_website_url": "http:\/\/www.swethaengg.org",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "BP",
+  "college_counselling_code": "VITT",
+  "college_name": "Vaishnavi Institute of Technology",
+  "college_website_url": "http:\/\/www.vitt.edu.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "9J",
+  "college_counselling_code": "VTTW",
+  "college_name": "Vaishnavi Institute of Technology for women",
+  "college_website_url": "http:\/\/www.vitwomen.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "4M",
+  "college_counselling_code": "VEMU",
+  "college_name": "Vemu Institute of Technology",
+  "college_website_url": "http:\/\/www.vemu.co.in",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "JB",
+  "college_counselling_code": "NIL",
+  "college_name": "Vignanasudha Institute of Management and Technology",
+  "college_website_url": "www.vimat.co",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ },
+ {
+  "college_univ_code": "4P",
+  "college_counselling_code": "YITS",
+  "college_name": "Yogananda Institute of Technology and Science",
+  "college_website_url": "http:\/\/www.yitsdmr.com",
+  "college_district": "Chittoor",
+    "college_state":"Andhra Pradesh",
+    "district_code":"CTR",
+    "state_code":"AP"
+ }
+]
