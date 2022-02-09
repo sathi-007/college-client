@@ -5,18 +5,31 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { auth, firebase } from "../../firebase";
+import { useSelector, useDispatch } from 'react-redux'
 import { useState , useEffect, useRef} from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import networkagent from "../../networkagent";
+import { loadBranches } from "../../actions";
+import { CircleSpinnerOverlay} from 'react-spinner-overlay'
+
 
 export default function CreateAcademicBatch(props) {
-    const navigate = useNavigate();
     const [branchObj, setBranchObj] = useState({
         branches:[{branchCode:"bc-"+0,branchSections:"bs-"+0,branchPills:[],minus:0}],
         count:1
     });
 
-    const [branchList, setBranchList] = useState([]);
+    // const [branchList, setBranchList] = useState([]);
+
+    const dispatch = useDispatch();
+
+    const isLoading = useSelector((state) => state.academicBatches.loading);
+
+    const error = useSelector((state) => state.academicBatches.error);
+
+    const branchList = useSelector((state) => state.academicBatches.branches);
+
+    const academicBatchUpload = useSelector((state) => state.academicBatches.academicBatchUpload);
 
     // const branches = useRef([])
     const branchesUrl='/branch/all'
@@ -60,43 +73,11 @@ export default function CreateAcademicBatch(props) {
         })
         formData.append('branches',JSON.stringify(branchArr))
 
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        }
-
-        axios.post(createBatchUrl,formData,config)
-        .then(function (response) {
-            console.log("response body",response);
-            navigate('/manager/academic/all')
-        })
-        .catch(function (error) {
-            console.log("response error",error.response);
-            if(error.response.status==400 || error.response.status==401){
-                const errorData = error.response.data
-                if(errorData.error_code==='NEO478'){ //token expired
-                    navigate('/')
-                }
-            }
-        });
+        dispatch(academicBatchUpload(networkagent.AcademicBatch.create(formData)))
     }
 
     const getBranches = ()  => {
-        axios.get(branchesUrl) 
-        .then( (response) => {
-            console.log("get api call response ",branchesUrl," ",response.data);
-            // branches.current = response.data
-            setBranchList(response.data)
-        })
-        .catch((error) => {
-            console.log("We have a server error",branchesUrl," ", error);
-            const errorData = error.response.data
-            if(errorData.error_code==='NEO478'){ //token expired
-                localStorage.removeItem('@token')
-                navigate('/')
-            }
-        });
+        dispatch(loadBranches(networkagent.Branch.getBranches()))
     }
 
     function addBranch() {
@@ -167,7 +148,6 @@ export default function CreateAcademicBatch(props) {
 
         var count = branchObj.count
 
-
         if(mIndex!==-1){
             branches.splice(mIndex,1)
         }
@@ -179,8 +159,12 @@ export default function CreateAcademicBatch(props) {
     }
 
     useEffect(() => {
-        if(branchList.length===0){
+        if(error){
+            // handleError(schema)
+        } else if(branchList.length===0){
             getBranches()
+        }else if(academicBatchUpload){
+            //show success
         }
     });
 
@@ -322,5 +306,9 @@ export default function CreateAcademicBatch(props) {
             </Col>
             <Col></Col>
         </Row>
+        <CircleSpinnerOverlay
+                loading={isLoading} 
+                overlayColor="rgba(0,153,255,0.2)"
+        />
     </Container>);
 }

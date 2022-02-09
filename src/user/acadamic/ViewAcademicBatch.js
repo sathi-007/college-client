@@ -5,35 +5,31 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { auth, firebase } from "../../firebase";
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux'
 import { useState , useEffect, useRef} from "react";
-import { useNavigate } from "react-router-dom";
+import { loadAcademicBatches } from "../../actions";
+import networkagent from "../../networkagent";
+import { Oval } from  'react-loader-spinner'
 
 
 export default function ViewAcademicBatch(props) {
-    const navigate = useNavigate();
-    const [academicBatchList, setAcademicBatchList] = useState([]);
 
-    const branchesUrl='/admin/academic_batch/all'
+    const dispatch = useDispatch();
+
+    const isLoading = useSelector((state) => state.academicBatches.loading);
+
+    const error = useSelector((state) => state.academicBatches.error);
+
+    const academicBatchList = useSelector((state) => state.academicBatches.academicBatchList);
 
     const getAcademicBatches = ()  => {
-        axios.get(branchesUrl) 
-        .then( (response) => {
-            console.log("get api call response ",branchesUrl," ",response.data);
-            setAcademicBatchList(response.data)
-        })
-        .catch((error) => {
-            console.log("We have a server error",branchesUrl," ", error);
-            const errorData = error.response.data
-            if(errorData.error_code==='NEO478'){ //token expired
-                localStorage.removeItem('@token')
-                navigate('/')
-            }
-        });
+        dispatch(loadAcademicBatches(networkagent.AcademicBatch.getAll()))
     }
 
     useEffect(() => {
-        if(academicBatchList.length===0){
+        if(error){
+            // handleError(schema)
+        } else if(academicBatchList.length===0){
             getAcademicBatches()
         }
     });
@@ -91,6 +87,7 @@ export default function ViewAcademicBatch(props) {
     return(<Container>
         <h1 className="text-center">Academic Batch List</h1>
         {
+             isLoading ? <div className="d-flex justify-content-center"><Oval color="#00BFFF" height={80} width={80} /></div> : 
             getListItemView()
         }
     </Container>);

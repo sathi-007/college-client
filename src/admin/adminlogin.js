@@ -7,10 +7,10 @@ import Button from 'react-bootstrap/Button';
 import { auth, firebase } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin(props) {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     async function googleLogin() {
         console.log("Google login");
@@ -32,7 +32,7 @@ export default function AdminLogin(props) {
               //6 - navigate user to the book list
               axios.get("root/login/",{ headers: {"Authorization" : `Bearer ${token}`}}).then((response) => {
                 var response = response.data;
-                navigate("/college/create");
+                // navigate("/college/create");
                 },
                 (error) => {
                     console.log(error);
@@ -62,7 +62,7 @@ export default function AdminLogin(props) {
                 axios.get("root/login/", { headers: {"Authorization" : `Bearer ${token}`} }).then((response) => {
                     var response = response.data;
                     console.log(response);
-                    navigate("/college/create");
+                    // navigate("/college/create");
                     },
                     (error) => {
                         console.log(error);

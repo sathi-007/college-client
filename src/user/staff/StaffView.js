@@ -6,23 +6,24 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { auth, firebase } from "../../firebase";
 import axios from 'axios';
+import agent from '../../networkagent'
+import { useSelector, useDispatch } from 'react-redux'
 import { useState , useEffect, useRef} from "react";
+import { loadStaff,staffLoadSuccess } from "../../actions";
+import { Oval } from  'react-loader-spinner'
 
 export default function StaffView(props) {
 
-    const [staff,setStaff]= useState([]);
+    const dispatch = useDispatch();
+
+    const isLoading = useSelector((state) => state.staff.loading);
+
+    const error = useSelector((state) => state.staff.error);
+
+    const staff = useSelector((state) => state.staff.staffList);
 
     const getStaff = ()  => {
-        const token = localStorage.getItem('@token');
-        axios.get('/admin/get_staff/all') 
-        .then( (response) => {
-            console.log(response.data);
-            var staffList = response.data
-            setStaff(staffList)
-        })
-        .catch((error) => {
-            console.log(`We have a server error`, error);
-        });
+        dispatch(loadStaff(agent.Staff.getAll()))
     }
 
     function getStaffView(){
@@ -50,15 +51,17 @@ export default function StaffView(props) {
 
 
     useEffect(() => {
-        if(staff.length==0){
+        if(error){
+            // handleError(schema)
+        } else if(staff.length==0){
             getStaff()
         }
-        
     });
 
     return(<Container>
         <h1 className="text-center m-5">Staff View</h1>
         {
+            isLoading ? <div className="d-flex justify-content-center"><Oval color="#00BFFF" height={80} width={80} /></div> : 
             getStaffView()
         }
     </Container>);

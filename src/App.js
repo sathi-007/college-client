@@ -1,7 +1,9 @@
 import './App.css';
 import {  BrowserRouter as Router,Routes, Route,useRoutes,Navigate,Outlet} from "react-router-dom";
+import { useEffect, useRef} from "react";
 import RegisterCollege from "./admin/collegecreate";
 import AdminLogin from "./admin/adminlogin";
+import { Provider } from 'react-redux';
 import Home from "./Homepage";
 import UserLogin from "./user/UserLogin";
 import Dashboard from "./user/Dashboard";
@@ -13,22 +15,42 @@ import CreateAcademicBatch  from "./user/acadamic/CreateAcademicBatch";
 import ViewAcademicBatch  from "./user/acadamic/ViewAcademicBatch";
 import StudentCreate from "./user/student/StudentCreate";
 import StudentView from "./user/student/StudentView";
+import thunk from 'redux-thunk';
+import { localStorageMiddleware } from './middleware';
+import allReducers from './reducer';
+import {createStore, applyMiddleware} from 'redux';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux'
+import agent from './networkagent'
+import { redirect } from './actions';
+import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {store} from './store'
+
+
 function App() {
+  const redirectTo = useSelector((state) => state.login.redirectTo);
 
-  // axios.defaults.baseURL = 'https://collegercode.web.app/';
-  axios.defaults.baseURL = 'http://localhost:5000/';
+  const navigate = useNavigate();
 
-  axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+  const dispatch = useDispatch();
+
+  console.log('redirectTo',redirectTo)
+
+  useEffect(() => {
+    if(redirectTo){
+      dispatch(redirect(null))
+      navigate(redirectTo)
+    }
+},[redirectTo]);
+
   const token = localStorage.getItem('@token');
 
   (function() {
     const token = localStorage.getItem('@token');
     if (token) {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    } else {
-        axios.defaults.headers.common['Authorization'] = null;
-    }
+        agent.setToken(token)
+    } 
   })();
 
   let routes = useRoutes([
@@ -64,11 +86,17 @@ function App() {
 }
 
 
+
 const AppWrapper = () => {
   return (
-    <Router>
-      <App />
-    </Router>
+    // <Router>
+    //   <App />
+    // </Router>
+    <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+    </Provider>
   );
 };
 

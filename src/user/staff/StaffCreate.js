@@ -6,24 +6,39 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { auth, firebase } from "../../firebase";
 import { useState , useEffect, useRef} from "react";
-
+import { useSelector, useDispatch } from 'react-redux'
 import XLSX from 'xlsx';
 import axios from 'axios';
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
+import agent from '../../networkagent'
+import { loadSchema, uploadStaff } from "../../actions";
+import { CircleSpinnerOverlay} from 'react-spinner-overlay'
 
 export default function StaffCreate(props) {
-    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
     const [file,setFile] = useState()
+
     const [result,setResult] = useState({
         headers:[],
         data:[]
     })
-    const [schema,setSchema] = useState({})
+
     const firstUpdate = useRef(true);
+
     const [show, setShow] = useState(false);
 
-    const handleClose = () => (event) => {
+    const isLoading = useSelector((state) => state.staff.loading);
+
+    const error = useSelector((state) => state.staff.error);
+
+    const schema = useSelector((state) => state.staff.schema);
+
+    const staffUpload = useSelector((state) => state.staff.staffUpload);
+
+    const closeDialog = (event) => {
         event.preventDefault();
         setShow(false)
     } 
@@ -44,23 +59,19 @@ export default function StaffCreate(props) {
             firstUpdate.current  = false;
             return;
         }
-        if(schema.name===undefined){
+        
+        if(error){
+            // handleError(schema)
+        } else if(schema.name===undefined){
             getSchema()
         }
         
     },[result.headers]);
 
     const getSchema = ()  => {
-        const token = localStorage.getItem('@token');
-        axios.get('/schema', { params: { id: 'staff' }, headers: {"Authorization" : `Bearer ${token}`} }) 
-        .then( (response) => {
-            console.log(response.data);
-            var schema = response.data
-            setSchema(response.data)
-        })
-        .catch((error) => {
-            console.log(`We have a server error`, error);
-        });
+
+        dispatch(loadSchema(agent.Schema.getSchema('staff')))
+
     }
 
     function onFileChange(e) {
@@ -125,7 +136,6 @@ export default function StaffCreate(props) {
             headers:headers,
             data:result
         }
-        //return result; //JavaScript object
         return res; //JSON
     }
 
@@ -198,14 +208,16 @@ export default function StaffCreate(props) {
                 <tr>{keys.map((key)=>(
                     <th>{map[key]}</th>))}</tr>
                     {
-                        data.map((obj)=>(
-                           <tr>
-                            {
-                                keys.map((key)=>(
-                                    <td>{obj[key]}</td>))
-                            }
-                           </tr>
-                        ))
+                        <tbody>{
+                            data.map((obj)=>(
+                            <tr>
+                                {
+                                    keys.map((key)=>(
+                                        <td>{obj[key]}</td>))
+                                }
+                            </tr>
+                            ))
+                        }</tbody>
                     }
             </table>
 
@@ -243,20 +255,7 @@ export default function StaffCreate(props) {
             }
         }
 
-        axios.post(url,formData,config)
-        .then(function (response) {
-            console.log("response body",response);
-            navigate('/manager/staff/all')
-        })
-        .catch(function (error) {
-            console.log("response error",error.response);
-            if(error.response.status==400 || error.response.status==401){
-                const errorData = error.response.data
-                if(errorData.error_code==='NEO478'){ //token expired
-                    navigate('/')
-                }
-            }
-        });
+        dispatch(uploadStaff(agent.Staff.create(formData)))
 
     }
 
@@ -301,13 +300,13 @@ export default function StaffCreate(props) {
         <Col></Col>
         </Row>
 
-        <Modal show={show} onHide={handleClose} size="xl">
+        <Modal show={show} onHide={closeDialog} size="xl">
             <Modal.Header closeButton>
             <Modal.Title>Preview</Modal.Title>
             </Modal.Header>
             <Modal.Body>{show?getPreviewTable():<div></div>}</Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={closeDialog}>
                 Close
             </Button>
             <Button variant="primary" onClick={uploadToServer}>
@@ -315,6 +314,11 @@ export default function StaffCreate(props) {
             </Button>
             </Modal.Footer>
         </Modal>
+
+        <CircleSpinnerOverlay
+                loading={isLoading} 
+                overlayColor="rgba(0,153,255,0.2)"
+        />
         </Container>
       )
 

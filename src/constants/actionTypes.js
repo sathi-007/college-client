@@ -1,0 +1,16 @@
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const REGISTER = 'REGISTER';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN__FAILURE';
+export const LOGIN_PAGE_UNLOADED = 'LOGIN_PAGE_UNLOADED';
+export const REGISTER_PAGE_UNLOADED = 'REGISTER_PAGE_UNLOADED';
+export const REDIRECT = 'REDIRECT';
+export const ASYNC_START = 'ASYNC_START';
+export const ASYNC_END = 'ASYNC_END';
+export const STAFF_LOAD= 'STAFF_LOAD';
+export const SCHEMA_LOAD= 'SCHEMA_LOAD';
+export const UPLOAD_STAFF= 'UPLOAD_STAFF';
+export const ACADEMIC_BATCH_LOAD= 'ACADEMIC_BATCH_LOAD';
+export const CREATE_ACADEMIC_BATCH= 'CREATE_ACADEMIC_BATCH';
+export const BRANCH_LOAD= 'BRANCH_LOAD';
