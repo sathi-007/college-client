@@ -54,11 +54,21 @@ const requests = {
       requests.get('branch/all')
   }
 
+  const Student = { 
+    getAll: () =>
+       requests.get('admin/get_students/all',null),
+    getStudents:(academicBatchId,branch,section)=> 
+       requests.get(`admin/get_students/${academicBatchId}`,{branch:branch,section:section}),
+    create: (formData) =>
+       requests.post('admin/upload_students', formData)
+   };
+
   export default {
     Auth,
     Staff,
     Schema,
     AcademicBatch,
     Branch,
+    Student,
     setToken: _token => { token = _token; }
   };

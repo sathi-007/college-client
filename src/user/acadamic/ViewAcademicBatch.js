@@ -1,12 +1,8 @@
 import React from "react";
-import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { auth, firebase } from "../../firebase";
 import { useSelector, useDispatch } from 'react-redux'
-import { useState , useEffect, useRef} from "react";
+import { useEffect} from "react";
 import { loadAcademicBatches } from "../../actions";
 import networkagent from "../../networkagent";
 import { Oval } from  'react-loader-spinner'

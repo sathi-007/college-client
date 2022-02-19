@@ -1,6 +1,6 @@
 import {
+    ASYNC_END,
     ASYNC_START,
-    SCHEMA_LOAD,
     STAFF_LOAD,
     UPLOAD_STAFF
   } from '../constants/actionTypes';
@@ -8,7 +8,6 @@ import {
   const initialState = {
     staffList : [],
     loading : false,
-    schema:{},
     staffUpload:{},
     error: false
 };
@@ -21,13 +20,10 @@ import {
             console.log('staff load  action ',action)
             return { ...state, loading: false, staffList:action.payload,error:action.error}
         }
-        case SCHEMA_LOAD: {
-            console.log('schema load  action ',action)
-            return { ...state, loading: false, schema:action.payload,error:action.error}
-        }
         case UPLOAD_STAFF:{
             return { ...state, loading: false, error:action.error,staffUpload:action.payload}
         }
+        case ASYNC_END: return { ...state, loading: false }
         default:return state;
     }
 };

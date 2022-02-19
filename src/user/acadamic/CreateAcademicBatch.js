@@ -4,10 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { auth, firebase } from "../../firebase";
 import { useSelector, useDispatch } from 'react-redux'
 import { useState , useEffect, useRef} from "react";
-import { useNavigate } from "react-router-dom";
 import networkagent from "../../networkagent";
 import { loadBranches } from "../../actions";
 import { CircleSpinnerOverlay} from 'react-spinner-overlay'

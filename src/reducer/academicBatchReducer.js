@@ -2,7 +2,9 @@ import {
     ASYNC_START,
    ACADEMIC_BATCH_LOAD,
    CREATE_ACADEMIC_BATCH,
-   BRANCH_LOAD
+   BRANCH_LOAD,
+   LOAD_ACADEMIC_BATCH_BRANCH,
+   ASYNC_END
   } from '../constants/actionTypes';
 
   const initialState = {
@@ -28,6 +30,7 @@ import {
         case CREATE_ACADEMIC_BATCH:{
             return { ...state, loading: false, error:action.error,academicBatchUpload:action.payload}
         }
+        case ASYNC_END: return { ...state, loading: false }
         default:return state;
     }
 };

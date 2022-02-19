@@ -4,26 +4,56 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { auth, firebase } from "../../firebase";
+import { useSelector, useDispatch } from 'react-redux'
+import { loadSchema, loadAcademicBatches,uploadStudents } from "../../actions";
 import { useState , useEffect, useRef} from "react";
-
+import networkagent from "../../networkagent";
+import { CircleSpinnerOverlay} from 'react-spinner-overlay'
 import XLSX from 'xlsx';
-import axios from 'axios';
 import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
 
 export default function StudentCreate(props) {
-    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
+    const isLoading = useSelector((state) => state.academicBatches.loading);
+
+    const academicBatchList = useSelector((state) => state.academicBatches.academicBatchList);
+
+    const schema = useSelector((state) => state.schema.schema);
+
+    const error = useSelector((state) => state.student.error) ;
+
+    const getAcademicBatches = ()  => {
+       dispatch(loadAcademicBatches(networkagent.AcademicBatch.getAll()))
+    }
+
+    const getSchema = ()  => {
+        dispatch(loadSchema(networkagent.Schema.getSchema('student')))
+    }
+
+    useEffect(() => {
+        if(error){ 
+           // handleError(schema)
+        } else if(academicBatchList.length===0){
+            getAcademicBatches()
+        }else if(schema.name===undefined){
+            getSchema()
+        }
+    });
+
+    const [selectFile,setSelectFile] = useState(false)
+    const [branches,setBranches] = useState([])
+    const [sections,setSections] = useState([])
     const [file,setFile] = useState()
     const [result,setResult] = useState({
         headers:[],
         data:[]
     })
-    const [schema,setSchema] = useState({})
     const firstUpdate = useRef(true);
     const [show, setShow] = useState(false);
 
-    const handleClose = () => (event) => {
+    const handleClose =  (event) => {
         event.preventDefault();
         setShow(false)
     } 
@@ -34,33 +64,9 @@ export default function StudentCreate(props) {
     } 
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+       event.preventDefault();
         console.log(file);
         readFile(file)
-    }
-
-    useEffect(() => {
-        if(firstUpdate.current){
-            firstUpdate.current  = false;
-            return;
-        }
-        if(schema.name===undefined){
-            getSchema()
-        }
-        
-    },[result.headers]);
-
-    const getSchema = ()  => {
-        const token = localStorage.getItem('@token');
-        axios.get('/schema', { params: { id: 'staff' }, headers: {"Authorization" : `Bearer ${token}`} }) 
-        .then( (response) => {
-            console.log(response.data);
-            var schema = response.data
-            setSchema(response.data)
-        })
-        .catch((error) => {
-            console.log(`We have a server error`, error);
-        });
     }
 
     function onFileChange(e) {
@@ -70,6 +76,55 @@ export default function StudentCreate(props) {
         console.log(mFile);
         setFile(mFile);
     }
+
+    const onBatchSelected = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        var academicBatchCode = e.target.value
+        console.log('academic batch code',academicBatchCode)
+        var mIndex = -1
+        academicBatchList.map((batch,index) => {
+            if(batch.unique_code == academicBatchCode){
+                mIndex = index 
+            }
+        })
+
+        console.log('index ',mIndex)
+        if(mIndex!=-1){
+            const academicBatch = academicBatchList[mIndex]
+            const branches = academicBatch.branches
+            console.log('branches ',branches)
+            setBranches(branches)
+        }
+    }
+
+    const onBranchSelected = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        var branchCode = e.target.value
+        console.log('branch code',branchCode)
+        var mIndex = -1
+        branches.map((branch,index) => {
+            if(branch.branch_id.branchCode == branchCode){
+                mIndex = index 
+            }
+        })
+
+        if(mIndex!=-1){
+            const branch = branches[mIndex]
+            const sections = branch.sections
+            setSections(sections)
+        }
+    }
+
+    const onSectionSelected = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        var section = e.target.value
+        console.log('section ',section)
+        setSelectFile(true)
+    }
+    
 
    function readFile(fileObj) {
         var name = fileObj.name;
@@ -113,12 +168,21 @@ export default function StudentCreate(props) {
         for (var i = 1; i < lines.length; i++) {
           var obj = {};
           var currentline = lines[i].split(",");
-    
-          for (var j = 0; j < headers.length; j++) {
-            obj[headers[j]] = currentline[j];
+
+          var isEmpty = true;
+
+          for(var k=0;k<currentline.length;k++){
+            isEmpty = isEmpty && currentline[k] === ''
           }
     
-          result.push(obj);
+          if(!isEmpty){
+            for (var j = 0; j < headers.length; j++) {
+                obj[headers[j]] = currentline[j];
+            }
+        
+            result.push(obj);
+          }
+
         }
 
         const res = {
@@ -232,42 +296,69 @@ export default function StudentCreate(props) {
 
         const token = localStorage.getItem('@token');
 
-        const url = 'admin/upload_staff';
         const formData = new FormData();
         formData.append('map',JSON.stringify(map))
         formData.append('data',JSON.stringify(result.data))
 
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        }
+        const academicBatchCode = document.getElementById('academicBatch').value
+        const branch_id = document.getElementById('branch').value
+        const section = document.getElementById('section').value
 
-        axios.post(url,formData,config)
-        .then(function (response) {
-            console.log("response body",response);
-            navigate('/manager/staff/all')
-        })
-        .catch(function (error) {
-            console.log("response error",error.response);
-            if(error.response.status==400 || error.response.status==401){
-                const errorData = error.response.data
-                if(errorData.error_code==='NEO478'){ //token expired
-                    navigate('/')
-                }
-            }
-        });
+        formData.append('academicBatch',academicBatchCode)
+        formData.append('branch_id',branch_id)
+        formData.append('section',section)
+
+        dispatch(uploadStudents(networkagent.Student.create(formData)))
 
     }
 
     return (
         <Container>
-        <Row>
+            <Form  className="mt-4">
+                <Form.Group as={Row} className="my-4" controlId="formBasicEmail">
+                <Col sm="4">
+                    <Form.Label inline className="text-danger text-center">Academic Batch:</Form.Label>
+                    <Form.Select inline id="academicBatch" required onChange={onBatchSelected.bind(this)}>
+                        <option value="" disabled selected>Select Academic Batch</option>
+                        {
+                        academicBatchList.map((batch) => (
+                            <option value={batch.unique_code}>{batch.name}</option>
+                            ))
+                        }
+                    </Form.Select>
+                </Col>
+                <Col sm="4">
+                    <Form.Label className="text-danger text-center">Branch:</Form.Label>
+                    <Form.Select id="branch" required onChange={onBranchSelected.bind(this)} disabled={branches.length==0}>
+                        <option value="" disabled selected>Select Branch</option>
+                        {
+                        branches.map((branch) => (
+                            <option value={branch.branch_id.branchCode}>{branch.branch_id.branchName}</option>
+                            ))
+                        }
+                    </Form.Select>
+                </Col>
+                <Col sm="4">
+                    <Form.Label className="text-danger text-center">Section:</Form.Label>
+                    <Form.Select id="section" required onChange={onSectionSelected.bind(this)} disabled={sections.length==0}>
+                        <option value="" disabled selected>Select Section</option>
+                        {
+                        sections.map((section) => (
+                            <option value={section}>{section}</option>
+                            ))
+                        }
+                    </Form.Select>
+                </Col>
+                </Form.Group>
+            </Form>
+
+        {
+            selectFile?<Row>
             <Col>  </Col>
             <Col md={4}>
 
-            <Form  className="mt-4" onSubmit={handleSubmit}>
-                <p className="h5 mt-5 text-danger text-center">Upload Excel file</p>
+            <Form onSubmit={handleSubmit}>
+                <p className="h5 mt-5 text-danger text-center">Select Excel file</p>
                 <div> 
                     <Form.Group className="my-4" controlId="formBasicEmail">
                         <Form.Control type="file" onChange={onFileChange.bind(this)} required/>
@@ -279,7 +370,8 @@ export default function StudentCreate(props) {
             </Form>
             </Col>
             <Col></Col>
-        </Row>
+        </Row> : <div></div>
+        }
         <Row>
             <Col>  </Col>
             <Col md={8}>
@@ -315,6 +407,11 @@ export default function StudentCreate(props) {
             </Button>
             </Modal.Footer>
         </Modal>
+
+        <CircleSpinnerOverlay
+                loading={isLoading} 
+                overlayColor="rgba(0,153,255,0.2)"
+        />
         </Container>
       )
 

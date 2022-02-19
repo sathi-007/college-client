@@ -6,7 +6,8 @@ import {
     REDIRECT,
     LOGIN_PAGE_UNLOADED,
     REGISTER_PAGE_UNLOADED,
-    ASYNC_START
+    ASYNC_START,
+    ASYNC_END
   } from '../constants/actionTypes';
 
 const initialState = {
@@ -24,6 +25,7 @@ function loginReducer(state = initialState, action) {
         }
         case LOGOUT: return { ...state, usersList: action.payload, error: false, loading: false }
         case LOGIN_PAGE_UNLOADED : return { ...state, usersList: [], error: true, loading: false }
+        case ASYNC_END: return { ...state, loading: false }
         default:return state;
     }
 };

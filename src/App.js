@@ -4,26 +4,18 @@ import { useEffect, useRef} from "react";
 import RegisterCollege from "./admin/collegecreate";
 import AdminLogin from "./admin/adminlogin";
 import { Provider } from 'react-redux';
-import Home from "./Homepage";
 import UserLogin from "./user/UserLogin";
 import Dashboard from "./user/Dashboard";
 import StaffCreate from "./user/staff/StaffCreate";
 import StaffView from "./user/staff/StaffView";
 import ManagerContainer  from "./user/ManagerContainer";
-import UpdateDetails  from "./user/UpdateDetails";
 import CreateAcademicBatch  from "./user/acadamic/CreateAcademicBatch";
 import ViewAcademicBatch  from "./user/acadamic/ViewAcademicBatch";
 import StudentCreate from "./user/student/StudentCreate";
 import StudentView from "./user/student/StudentView";
-import thunk from 'redux-thunk';
-import { localStorageMiddleware } from './middleware';
-import allReducers from './reducer';
-import {createStore, applyMiddleware} from 'redux';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import agent from './networkagent'
 import { redirect } from './actions';
-import { useHistory } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {store} from './store'
 

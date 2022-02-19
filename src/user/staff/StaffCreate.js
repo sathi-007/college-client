@@ -4,13 +4,10 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { auth, firebase } from "../../firebase";
 import { useState , useEffect, useRef} from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import XLSX from 'xlsx';
-import axios from 'axios';
 import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
 import agent from '../../networkagent'
 import { loadSchema, uploadStaff } from "../../actions";
 import { CircleSpinnerOverlay} from 'react-spinner-overlay'
@@ -34,7 +31,7 @@ export default function StaffCreate(props) {
 
     const error = useSelector((state) => state.staff.error);
 
-    const schema = useSelector((state) => state.staff.schema);
+    const schema = useSelector((state) => state.schema.schema);
 
     const staffUpload = useSelector((state) => state.staff.staffUpload);
 

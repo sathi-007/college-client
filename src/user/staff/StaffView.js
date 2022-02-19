@@ -1,15 +1,9 @@
 import React from "react";
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { auth, firebase } from "../../firebase";
-import axios from 'axios';
 import agent from '../../networkagent'
 import { useSelector, useDispatch } from 'react-redux'
-import { useState , useEffect, useRef} from "react";
-import { loadStaff,staffLoadSuccess } from "../../actions";
+import { useEffect} from "react";
+import { loadStaff } from "../../actions";
 import { Oval } from  'react-loader-spinner'
 
 export default function StaffView(props) {

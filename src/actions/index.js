@@ -6,7 +6,9 @@ import {
     UPLOAD_STAFF,
     ACADEMIC_BATCH_LOAD,
     CREATE_ACADEMIC_BATCH,
-    BRANCH_LOAD
+    BRANCH_LOAD,
+    UPLOAD_STUDENT,
+    STUDENT_LOAD
 
   } from '../constants/actionTypes';
 
@@ -63,6 +65,20 @@ export  const loadBranches = (payload) => {
 export  const createAcademicBatch = (payload) => {
   return {
     type: CREATE_ACADEMIC_BATCH,
+    payload
+  }
+}
+
+export  const uploadStudents = (payload) => {
+  return {
+    type: UPLOAD_STUDENT,
+    payload
+  }
+}
+
+export  const loadStudents = (payload) => {
+  return {
+    type: STUDENT_LOAD,
     payload
   }
 }
