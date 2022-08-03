@@ -24,12 +24,12 @@ export default function NavigationBar(props) {
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="mr-auto">
                                     <Nav.Link href="/manager/dashboard">Dashboard</Nav.Link>
-                                    {/* <Nav.Link href="/manager/academic">Acadamic</Nav.Link> */}
+
                                     <NavDropdown title="Academic" id="basic-nav-dropdown">
                                         <NavDropdown.Item href="/manager/academic">View</NavDropdown.Item>
                                         <NavDropdown.Item href="/manager/academic/create">Create</NavDropdown.Item>
                                     </NavDropdown>
-                                    {/* <Nav.Link href="/manager/staff">Staff</Nav.Link> */}
+
                                     <NavDropdown title="Staff" id="basic-nav-dropdown">
                                         <NavDropdown.Item href="/manager/staff">View</NavDropdown.Item>
                                         <NavDropdown.Item href="/manager/staff/create">Upload</NavDropdown.Item>
@@ -40,6 +40,12 @@ export default function NavigationBar(props) {
                                         <NavDropdown.Item href="/manager/student/create">Upload</NavDropdown.Item>
                                     </NavDropdown>
                                     
+                                    <NavDropdown title="Results" id="basic-nav-dropdown">
+                                        <NavDropdown.Item href="/manager/results">View</NavDropdown.Item>
+                                        <NavDropdown.Item href="/manager/results/upload">Upload</NavDropdown.Item>
+                                        <NavDropdown.Item href="/manager/results/trigger">Pull Results</NavDropdown.Item>
+                                    </NavDropdown>
+
                                     {/* <Nav.Link href="/manager/student">Student</Nav.Link> */}
                                     {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -47,7 +53,7 @@ export default function NavigationBar(props) {
                                         <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                                    </NavDropdown> */}
+                                    </NavDropdown> */}          
                                     </Nav>
                                     <Form className="d-flex ms-auto mx-3">
                                         <Form.Control className="form-control me-2" type="text" placeholder="Search" />

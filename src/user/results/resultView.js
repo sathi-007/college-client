@@ -4,13 +4,13 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState , useEffect, useRef} from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import networkagent from "../networkagent";
+import { useSelector, useDispatch } from 'react-redux'
 import Container from 'react-bootstrap/Container';
-import { loadAcademicBatches,triggerResults } from "../actions";
-import { CircleSpinnerOverlay} from 'react-spinner-overlay';
+import { CircleSpinnerOverlay} from 'react-spinner-overlay'
+import { analyseResults, loadAcademicBatches } from "../../actions";
+import networkagent from "../../networkagent";
 
-export default function Dashboard(props) {
+export default function ResultView(props) {
  
     const dispatch = useDispatch();
 
@@ -20,18 +20,18 @@ export default function Dashboard(props) {
 
     const error = useSelector((state) => state.academicBatches.error) ;
 
+    const [semesterSelected,setSemesterSelected] = useState(false)
+
     const [enableBtn,setEnableBtn] = useState(false)
+
+    const [branches,setBranches] = useState([])
 
     const getAcademicBatches = ()  => {
         dispatch(loadAcademicBatches(networkagent.AcademicBatch.getAll()))
     }
 
-    const initiateResults = (academicBatch,url,semester)  => {
-        const formData = new FormData();
-        formData.append('academicBatch',academicBatch)
-        formData.append('resultUrl',url)
-        formData.append('semester',semester)
-        dispatch(triggerResults(networkagent.Results.initiate(formData)))
+    const callAnalyseResults = (academicBatch,branch,semester)  => {
+        dispatch(analyseResults(networkagent.Results.branchResults(academicBatch,branch,semester)))
     }
 
 
@@ -52,16 +52,38 @@ export default function Dashboard(props) {
             const academicBatch = academicBatchList[mIndex]
             const branches = academicBatch.branches
             console.log('branches ',branches)
-            setEnableBtn(true)
+            setBranches(branches)
         }
+    }
+
+    
+    const onBranchSelected = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        var branchCode = e.target.value
+        console.log('branch code',branchCode)
+        var mIndex = -1
+        branches.map((branch,index) => {
+            if(branch.branch_id.branchCode == branchCode){
+                mIndex = index 
+            }
+        })
+
+        setSemesterSelected(true)
+    }
+
+    const onSemesterSelected = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        setEnableBtn(true)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
          const academicBatchCode = document.getElementById('academicBatch').value
-         const url = document.getElementById('url').value
+         const branch = document.getElementById('branch').value
          const semester = document.getElementById('semester').value
-         triggerResults(initiateResults(academicBatchCode,url,semester))
+         callAnalyseResults(academicBatchCode,branch,semester)
      }
 
     useEffect(() => {
@@ -74,7 +96,7 @@ export default function Dashboard(props) {
 
     
     return(<Container>
-        <h1 className="text-center m-5">Dashboard</h1>
+        <h1 className="text-center m-5">Result Analysis</h1>
         <Form  className="mt-4" onSubmit={handleSubmit}>
                 <Form.Group as={Row} className="my-4" controlId="formBasicEmail">
                 <Col sm="4">
@@ -89,9 +111,22 @@ export default function Dashboard(props) {
                     </Form.Select>
                 </Col>
                 <Col sm="4">
+                    <Form.Label className="text-danger text-center">Branch:</Form.Label>
+                    <Form.Select id="branch" required onChange={onBranchSelected.bind(this)} disabled={branches.length==0}>
+                        <option value="" disabled selected>Select Branch</option>
+                        {
+                        branches.map((branch) => (
+                            <option value={branch.branch_id.branchCode}>{branch.branch_id.branchName}</option>
+                            ))
+                        }
+                    </Form.Select>
+                </Col>
+                {
+               
+                <Col sm="4">
                 <Form.Label inline className="text-danger text-center">Select Semester:</Form.Label>
 
-                            <Form.Select sm="6" id="semester" required>
+                            <Form.Select sm="6" id="semester" required onChange={onSemesterSelected.bind(this)} disabled={!semesterSelected}>
                                 <option value="8">8</option>
                                 <option value="7">7</option>
                                 <option value="6">6</option>
@@ -102,12 +137,9 @@ export default function Dashboard(props) {
                                 <option value="1">1</option>
                             </Form.Select>
                 </Col>
-                <Col sm="4">
-                    <Form.Label inline className="text-danger text-center">Result Url:</Form.Label>
-                    <Form.Control type="url" id="url" placeholder="Enter Url for Results" required/>
-                </Col>
+                
+                }
                 </Form.Group>
-
                 {
                     enableBtn?
                     <center className="my-3">

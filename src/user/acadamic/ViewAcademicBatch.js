@@ -36,7 +36,7 @@ export default function ViewAcademicBatch(props) {
             return <Container>{
                     academicBatchList.map((batch) => (
                         <div className="my-3 p-2 border border-2 border-success rounded-2">
-                            <h4 className="text-center my-3 ">{batch.name}</h4>
+                            <h2 className="text-center my-3 ">{batch.name}</h2>
                             <Row>
                                 <p className="col-sm-3">Batch code:</p> <p className="col-sm-3">{batch.unique_code}</p>
                                 <p className="col-sm-3">Course Duration:</p> <p className="col-sm-3">{batch.course_duration} Years</p>
@@ -76,7 +76,6 @@ export default function ViewAcademicBatch(props) {
                     ))
                 }
             </Container>
-
         }
     }
 

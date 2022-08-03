@@ -12,18 +12,18 @@ import {
 
 const initialState = {
     loading : false,
-    error: false
+    error: false,
 };
     
 function loginReducer(state = initialState, action) {
     switch (action.type) {
         case ASYNC_START:  return { ...state, loading: true }
-        case LOGIN: return { ...state, user:action.payload, error: action.error, loading: false}
+        case LOGIN: return { ...state, user:action.payload, errorData:action.errorData, error: action.error, loading: false}
         case REDIRECT: {
             console.log('redirect action ',action)
             return { ...state, redirectTo:action.path}
         }
-        case LOGOUT: return { ...state, usersList: action.payload, error: false, loading: false }
+        case LOGOUT: return { ...state, user: null, error: false, loading: false }
         case LOGIN_PAGE_UNLOADED : return { ...state, usersList: [], error: true, loading: false }
         case ASYNC_END: return { ...state, loading: false }
         default:return state;

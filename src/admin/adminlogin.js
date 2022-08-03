@@ -85,7 +85,27 @@ export default function AdminLogin(props) {
         const email = document.getElementById('email').value;
         const passwd = document.getElementById('passwd').value;
         
-        googleLoginWithEmailPwd(email,passwd);
+        // googleLoginWithEmailPwd(email,passwd);
+        const formData = new FormData();
+        formData.append('data',JSON.stringify(newArr))
+        formData.append('map',JSON.stringify(map))
+
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            }
+        }
+
+        axios.post("admin/login/",formData,config).then((response) => {
+            var response = response.data;
+            console.log(response);
+            navigate("/college/create");
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
         
     }
 

@@ -31,15 +31,21 @@ const promiseMiddleware = store => next => action => {
         // if (!skipTracking && currentState.viewChangeCounter !== currentView) {
         //   return
         // }
-        console.log('ERROR', error);
-        action.error = true;
-        action.payload = error.response.body;
-        if(error.response.status==400 || error.response.status==401){
-            const errorData = error.response.data
-            if(errorData.error_code==='NEO478'){ //token expired
-              agent.setToken(null);
-              store.dispatch(redirect('/'))
-            }
+        
+        if(error.response){
+          action.error = true;
+          action.payload = error;
+          console.log('ERROR', error.response.status, error.response.data);
+          if(error.response.status==400 || error.response.status==401){
+              const errorData = error.response.data
+              // if(errorData.error_code==='NEO478'){ //token expired
+                console.log('Token expired')
+                agent.setToken(null);
+                store.dispatch({ type: LOGOUT, payload: action.payload })
+                store.dispatch(redirect('/'))
+                return;
+              // }
+          }
         }
         // if (!action.skipTracking) {
           store.dispatch({ type: ASYNC_END, promise: action.payload });

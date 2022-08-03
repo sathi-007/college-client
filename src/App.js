@@ -17,7 +17,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import agent from './networkagent'
 import { redirect } from './actions';
 import { useNavigate } from "react-router-dom";
-import {store} from './store'
+import {store} from './store';
+import ResetPassword from './user/ResetPassword';
+import ResultView from './user/results/resultView';
 
 
 function App() {
@@ -66,11 +68,17 @@ function App() {
           { path: 'all', element: <StudentView /> },
           { path: '', element: <Navigate to="/manager/student/all"/> },
         ] },
+        { path: 'results', element: <Outlet />, children:[
+          { path: 'trigger', element: <Dashboard /> },
+          { path: 'all', element: <ResultView /> },
+          { path: '', element: <Navigate to="/manager/results/all"/> },
+        ] },
         { path: '', element: <Navigate to="/manager/dashboard"/> },
       ]
     },
     { path: '/college/create', element: <RegisterCollege /> },
     { path: '/root/login', element: <AdminLogin /> },
+    { path: '/reset_password', element: <ResetPassword /> },
     { path: '/', element: <UserLogin /> },
   ]);
 

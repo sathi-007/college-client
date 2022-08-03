@@ -63,6 +63,17 @@ const requests = {
        requests.post('admin/upload_students', formData)
    };
 
+   const Results = {
+    getResults:(academicBatchId,branch,section)=> 
+       requests.get(`admin/get_results/${academicBatchId}`,{branch:branch,section:section}),
+    allResults:(academicBatchId,branch,semester)=> 
+       requests.get(`admin/get_results/all/${branch}/${academicBatchId}/${semester}`,null),
+    branchResults:(academicBatchId,branch,semester)=> 
+       requests.get(`admin/get_results/bybranch/${branch}/${academicBatchId}/${semester}`,null),
+    initiate: (formData) =>
+       requests.post('admin/results/trigger', formData)
+   };
+
   export default {
     Auth,
     Staff,
@@ -70,5 +81,6 @@ const requests = {
     AcademicBatch,
     Branch,
     Student,
+    Results,
     setToken: _token => { token = _token; }
   };

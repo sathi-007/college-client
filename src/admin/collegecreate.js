@@ -60,9 +60,6 @@ export default function RegisterCollege(props) {
         }
         console.log(newArr)
 
-
-
-
         formData.append('data',JSON.stringify(newArr))
         formData.append('map',JSON.stringify(map))
 

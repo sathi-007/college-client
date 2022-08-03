@@ -27,12 +27,12 @@ export default function UserLogin(props) {
 
     useEffect(() => {
         console.log('useEffect called in userlogin screen',user)
-        if(user){
+        if(error){
+            handleError(user)
+        }else if(user){
             if(user.user_type){
                 dispatch(redirect('/manager/dashboard'))
             }
-        }else if(error){
-            handleError(user)
         }
     },[user]);
 
@@ -77,19 +77,10 @@ export default function UserLogin(props) {
             if(errorData.error_code==='NEO456'){ //token expired
                 const email = firebase.auth().currentUser.email
                 var actionCodeSettings = {
-                    url: 'https://collegercode.web.app/' + email,
-                    iOS: {
-                        bundleId: 'com.colleger.code'
-                    },
-                    android: {
-                        packageName: 'com.colleger.code',
-                        installApp: true,
-                        minimumVersion: '12'
-                    },
+                    url: 'https://collegercode.firebaseapp.com/',
                     handleCodeInApp: true,
                     // When multiple custom dynamic link domains are defined, specify which
                     // one to use.
-                    dynamicLinkDomain: "com.colleger.code.link"
                     };
                 // 
                 sendPasswordResetEmail(auth, email,actionCodeSettings)
@@ -128,7 +119,7 @@ export default function UserLogin(props) {
                 //6 - navigate user to the book list
                 // login(email)
 
-                dispatch(login(token,agent.Auth.login))
+                dispatch(login(token,agent.Auth.login()))
             }
 
           })
